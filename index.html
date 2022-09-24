@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analog</title>
+  <style>
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+
+      width: 100%;
+    }
+
+    .back-circle {
+      width: 400px;
+      height: 400px;
+      background: red;
+      border-radius: 50%;
+      position: relative;
+      background: #e5e5e5;
+      box-shadow: 8px 8px 10px #000, -5px -5px 10px #000;
+    }
+
+    .front-circle {
+      width: 300px;
+      height: 300px;
+      background: #fff;
+      border-radius: 50%;
+      position: absolute;
+      top: 12%;
+      left: 12%;
+      background: url("music.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      object-fit: cover;
+    }
+
+    .small-circle {
+      width: 25px;
+      height: 25px;
+      background: red;
+      border-radius: 50%;
+      position: absolute;
+      left: 44%;
+      top: 44%;
+      background: #e5e5e5;
+      z-index: 10;
+    }
+
+    .hour {
+      height: 120px;
+      width: 10px;
+      background: red;
+      border-radius: 50% 50% 0 0;
+      position: absolute;
+      left: 47%;
+      top: 5%;
+      transform-origin: bottom;
+      z-index: 5;
+    }
+
+    .minute {
+      height: 98px;
+      width: 10px;
+      background: blue;
+      border-radius: 50% 50% 0 0;
+      position: absolute;
+      left: 45%;
+      top: 13%;
+      transform-origin: bottom;
+    }
+
+    .second {
+      height: 135px;
+      width: 3px;
+      background: gold;
+      border-radius: 50% 50% 0 0;
+      position: absolute;
+      left: 48%;
+      top: 4%;
+      transform-origin: bottom;
+    }
+
+    .num {
+      font-size: 30px;
+      font-weight: bold;
+      text-shadow: 1px 1px 1px #000;
+    }
+
+    p:nth-child(1) {
+      position: absolute;
+      left: 45%;
+      top: -24%;
+    }
+
+    p:nth-child(2) {
+      position: absolute;
+      left: 105%;
+      top: 30%;
+    }
+
+    p:nth-child(3) {
+      position: absolute;
+      left: 47%;
+      top: 94%;
+    }
+
+    p:nth-child(4) {
+      position: absolute;
+      left: -10%;
+      top: 35%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="back-circle">
+      <div class="front-circle">
+        <div class="small-circle"></div>
+        <div class="hour"></div>
+        <div class="minute"></div>
+        <div class="second"></div>
+
+        <div class="num">
+          <p>12</p>
+          <p>3</p>
+          <p>6</p>
+          <p>9</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let ourHour = document.querySelector(".hour");
+    let ourMin = document.querySelector(".minute");
+    let ourSec = document.querySelector(".second");
+
+    setInterval(function () {
+      let time = new Date();
+      let hour = time.getHours();
+      let min = time.getMinutes();
+      let sec = time.getSeconds();
+
+      rotateHour = 30 * hour + min / 2; //hour ah get pannah formula
+      rotateMin = 6 * min; //min ah get pannah formula
+      rotateSec = 6 * sec; //sec ah get pannah formula
+
+      // console.log(rotateHour, rotateMin, rotateSec);
+      ourHour.style = `transform:rotate(${rotateHour}deg)`;
+      ourMin.style = `transform:rotate(${rotateMin}deg)`;
+      ourSec.style = `transform:rotate(${rotateSec}deg)`;
+    }, 1000);
+  </script>
+</body>
+
+</html>
